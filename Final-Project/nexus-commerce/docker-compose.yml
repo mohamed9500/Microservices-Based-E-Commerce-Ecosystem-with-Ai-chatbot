@@ -1,0 +1,347 @@
+# Nexus Commerce - local development stack.  Usage:  cp .env.example .env  (edit)  &&  docker compose up --build
+name: nexus-commerce
+
+x-dotnet-env: &dotnet-env
+  ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Development}
+  Jwt__Key: ${JWT_SIGNING_KEY:?Set JWT_SIGNING_KEY in .env (min 32 chars, e.g. openssl rand -base64 48)}
+  Urls: http://+:8080
+  Jwt__Issuer: nexus-identity
+  Jwt__Audience: nexus-clients
+  Cors__Origins: ${CORS_ORIGINS:-http://localhost:3000,http://localhost:5173}
+  RabbitMq__Host: rabbitmq
+  RabbitMq__User: ${RABBITMQ_USER:-nexus}
+  RabbitMq__Password: ${RABBITMQ_PASSWORD:-nexus_dev_password}
+
+x-dotnet-service: &dotnet-service
+  restart: unless-stopped
+  networks: [nexus]
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    # By setting ACCEPT_EULA=Y you accept the SQL Server licence terms (the Developer edition is free for non-production use).
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:?Set MSSQL_SA_PASSWORD in .env}
+      MSSQL_PID: Developer
+      MSSQL_MEMORY_LIMIT_MB: "2048"
+    ports: ["1433:1433"]
+    volumes: [sqlserver-data:/var/opt/mssql]
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          '/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P "$$MSSQL_SA_PASSWORD" -Q ''SELECT 1'' -b -o /dev/null',
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+    restart: unless-stopped
+    networks: [nexus]
+
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-nexus}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-nexus_dev_password}
+    ports: ["5672:5672", "15672:15672"]
+    volumes: [rabbitmq-data:/var/lib/rabbitmq]
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    restart: unless-stopped
+    networks: [nexus]
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports: ["6379:6379"]
+    volumes: [redis-data:/data]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+    networks: [nexus]
+
+  identity:
+    <<: *dotnet-service
+    build:
+      {
+        context: .,
+        dockerfile: infrastructure/docker/dotnet.Dockerfile,
+        args:
+          {
+            PROJECT: services/identity/Nexus.Identity.csproj,
+            ASSEMBLY: Nexus.Identity,
+          },
+      }
+    image: nexus/identity:dev
+    environment:
+      <<: *dotnet-env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=nexus_identity;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True;Encrypt=False"
+      Admin__Email: ${ADMIN_EMAIL:-}
+      Admin__Password: ${ADMIN_PASSWORD:-}
+      Admin__ResetPassword: ${ADMIN_RESET_PASSWORD:-false}
+    depends_on:
+      sqlserver: { condition: service_healthy }
+    ports: ["5101:8080"] # direct access for Swagger (development)
+
+  catalog:
+    <<: *dotnet-service
+    build:
+      {
+        context: .,
+        dockerfile: infrastructure/docker/dotnet.Dockerfile,
+        args:
+          {
+            PROJECT: services/catalog/Nexus.Catalog.csproj,
+            ASSEMBLY: Nexus.Catalog,
+          },
+      }
+    image: nexus/catalog:dev
+    environment:
+      <<: *dotnet-env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=nexus_catalog;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True;Encrypt=False"
+      Redis__ConnectionString: redis:6379,abortConnect=false
+    depends_on:
+      sqlserver: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    ports: ["5102:8080"] # direct access for Swagger (development)
+
+  inventory:
+    <<: *dotnet-service
+    build:
+      {
+        context: .,
+        dockerfile: infrastructure/docker/dotnet.Dockerfile,
+        args:
+          {
+            PROJECT: services/inventory/Nexus.Inventory.csproj,
+            ASSEMBLY: Nexus.Inventory,
+          },
+      }
+    image: nexus/inventory:dev
+    environment:
+      <<: *dotnet-env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=nexus_inventory;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True;Encrypt=False"
+    depends_on:
+      sqlserver: { condition: service_healthy }
+      rabbitmq: { condition: service_healthy }
+    ports: ["5103:8080"] # direct access for Swagger (development)
+
+  cart:
+    <<: *dotnet-service
+    build:
+      {
+        context: .,
+        dockerfile: infrastructure/docker/dotnet.Dockerfile,
+        args:
+          { PROJECT: services/cart/Nexus.Cart.csproj, ASSEMBLY: Nexus.Cart },
+      }
+    image: nexus/cart:dev
+    environment:
+      <<: *dotnet-env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=nexus_cart;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True;Encrypt=False"
+      Services__Catalog: http://catalog:8080
+      Services__Inventory: http://inventory:8080
+    depends_on:
+      sqlserver: { condition: service_healthy }
+      rabbitmq: { condition: service_healthy }
+      catalog: { condition: service_healthy }
+      inventory: { condition: service_healthy }
+    ports: ["5104:8080"] # direct access for Swagger (development)
+
+  orders:
+    <<: *dotnet-service
+    build:
+      {
+        context: .,
+        dockerfile: infrastructure/docker/dotnet.Dockerfile,
+        args:
+          {
+            PROJECT: services/orders/Nexus.Orders.csproj,
+            ASSEMBLY: Nexus.Orders,
+          },
+      }
+    image: nexus/orders:dev
+    environment:
+      <<: *dotnet-env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=nexus_orders;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True;Encrypt=False"
+      Services__Cart: http://cart:8080
+    depends_on:
+      sqlserver: { condition: service_healthy }
+      rabbitmq: { condition: service_healthy }
+      cart: { condition: service_healthy }
+    ports: ["5105:8080"] # direct access for Swagger (development)
+
+  payments:
+    <<: *dotnet-service
+    build:
+      {
+        context: .,
+        dockerfile: infrastructure/docker/dotnet.Dockerfile,
+        args:
+          {
+            PROJECT: services/payments/Nexus.Payments.csproj,
+            ASSEMBLY: Nexus.Payments,
+          },
+      }
+    image: nexus/payments:dev
+    environment:
+      <<: *dotnet-env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=nexus_payments;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True;Encrypt=False"
+    depends_on:
+      sqlserver: { condition: service_healthy }
+      rabbitmq: { condition: service_healthy }
+    ports: ["5106:8080"] # direct access for Swagger (development)
+
+  notifications:
+    <<: *dotnet-service
+    build:
+      {
+        context: .,
+        dockerfile: infrastructure/docker/dotnet.Dockerfile,
+        args:
+          {
+            PROJECT: services/notifications/Nexus.Notifications.csproj,
+            ASSEMBLY: Nexus.Notifications,
+          },
+      }
+    image: nexus/notifications:dev
+    environment:
+      <<: *dotnet-env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=nexus_notifications;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True;Encrypt=False"
+      Email__Provider: ${EMAIL_PROVIDER:-log}
+      Email__Smtp__Host: ${SMTP_HOST:-}
+      Email__Smtp__Port: ${SMTP_PORT:-587}
+      Email__Smtp__User: ${SMTP_USER:-}
+      Email__Smtp__Password: ${SMTP_PASSWORD:-}
+    depends_on:
+      sqlserver: { condition: service_healthy }
+      rabbitmq: { condition: service_healthy }
+    ports: ["5107:8080"] # direct access for Swagger (development)
+
+  reviews:
+    <<: *dotnet-service
+    build:
+      {
+        context: .,
+        dockerfile: infrastructure/docker/dotnet.Dockerfile,
+        args:
+          {
+            PROJECT: services/reviews/Nexus.Reviews.csproj,
+            ASSEMBLY: Nexus.Reviews,
+          },
+      }
+    image: nexus/reviews:dev
+    environment:
+      <<: *dotnet-env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=nexus_reviews;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True;Encrypt=False"
+      Services__Orders: http://orders:8080
+    depends_on:
+      sqlserver: { condition: service_healthy }
+      orders: { condition: service_healthy }
+    ports: ["5108:8080"] # direct access for Swagger (development)
+
+  assistant:
+    <<: *dotnet-service
+    build:
+      {
+        context: .,
+        dockerfile: infrastructure/docker/dotnet.Dockerfile,
+        args:
+          {
+            PROJECT: services/ai-assistant/Nexus.Assistant.csproj,
+            ASSEMBLY: Nexus.Assistant,
+          },
+      }
+    image: nexus/assistant:dev
+    environment:
+      <<: *dotnet-env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=nexus_assistant;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True;Encrypt=False"
+      Services__Catalog: http://catalog:8080
+      Services__Inventory: http://inventory:8080
+      Services__Reviews: http://reviews:8080
+      Ai__Provider: ${AI_PROVIDER:-none}
+      Ai__ApiKey: ${AI_API_KEY:-}
+      Ai__Model: ${AI_MODEL:-}
+      Ai__BaseUrl: ${AI_BASE_URL:-}
+    depends_on:
+      sqlserver: { condition: service_healthy }
+      catalog: { condition: service_healthy }
+      inventory: { condition: service_healthy }
+      reviews: { condition: service_healthy }
+    ports: ["5109:8080"] # direct access for Swagger (development)
+
+  gateway:
+    <<: *dotnet-service
+    build:
+      {
+        context: .,
+        dockerfile: infrastructure/docker/dotnet.Dockerfile,
+        args:
+          { PROJECT: gateway/Nexus.Gateway.csproj, ASSEMBLY: Nexus.Gateway },
+      }
+    image: nexus/gateway:dev
+    environment:
+      <<: *dotnet-env
+      ReverseProxy__Clusters__identity__Destinations__d1__Address: http://identity:8080/
+      Monitoring__Services__identity: http://identity:8080
+      ReverseProxy__Clusters__catalog__Destinations__d1__Address: http://catalog:8080/
+      Monitoring__Services__catalog: http://catalog:8080
+      ReverseProxy__Clusters__inventory__Destinations__d1__Address: http://inventory:8080/
+      Monitoring__Services__inventory: http://inventory:8080
+      ReverseProxy__Clusters__cart__Destinations__d1__Address: http://cart:8080/
+      Monitoring__Services__cart: http://cart:8080
+      ReverseProxy__Clusters__orders__Destinations__d1__Address: http://orders:8080/
+      Monitoring__Services__orders: http://orders:8080
+      ReverseProxy__Clusters__payments__Destinations__d1__Address: http://payments:8080/
+      Monitoring__Services__payments: http://payments:8080
+      ReverseProxy__Clusters__notifications__Destinations__d1__Address: http://notifications:8080/
+      Monitoring__Services__notifications: http://notifications:8080
+      ReverseProxy__Clusters__reviews__Destinations__d1__Address: http://reviews:8080/
+      Monitoring__Services__reviews: http://reviews:8080
+      ReverseProxy__Clusters__assistant__Destinations__d1__Address: http://assistant:8080/
+      Monitoring__Services__assistant: http://assistant:8080
+    depends_on:
+      identity: { condition: service_healthy }
+      catalog: { condition: service_healthy }
+      inventory: { condition: service_healthy }
+      cart: { condition: service_healthy }
+      orders: { condition: service_healthy }
+      payments: { condition: service_healthy }
+      notifications: { condition: service_healthy }
+      reviews: { condition: service_healthy }
+      assistant: { condition: service_healthy }
+    ports: ["5100:8080"]
+
+  frontend:
+    build: { context: ./frontend }
+    image: nexus/frontend:dev
+    depends_on:
+      gateway: { condition: service_healthy }
+    ports: ["3000:80"]
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:80/ >/dev/null || exit 1"]
+      interval: 15s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    networks: [nexus]
+
+networks:
+  nexus:
+    name: nexus
+    driver: bridge
+
+volumes:
+  sqlserver-data:
+  rabbitmq-data:
+  redis-data:

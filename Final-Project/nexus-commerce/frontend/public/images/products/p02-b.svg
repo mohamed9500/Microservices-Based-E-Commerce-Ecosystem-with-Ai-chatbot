@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Aurora X5 Pro Smartphone 256GB">
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="hsl(221,70%,89%)"/><stop offset="1" stop-color="hsl(251,65%,76%)"/></linearGradient></defs>
+<rect width="800" height="800" fill="url(#g)"/><circle cx="656.0" cy="160.0" r="144.0" fill="hsl(221,60%,70%)" opacity=".35"/>
+<g transform="translate(160.0,80.0) scale(4.00)" fill="none" stroke="hsl(221,55%,28%)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="38" y="14" width="44" height="92" rx="9"/><line x1="52" y1="96" x2="68" y2="96"/></g>
+<text x="400.0" y="624.0" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="42" font-weight="700" fill="hsl(221,55%,28%)">Aurora X5 Pro Smartphone 256GB</text>
+<text x="400.0" y="688.0" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="29" fill="hsl(221,55%,28%)" opacity=".75">Aurora · Detail view</text>
+</svg>

@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="xunit" Version="2.*" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\contracts\Nexus.Contracts.csproj" />
+    <ProjectReference Include="..\..\building-blocks\Nexus.BuildingBlocks.csproj" />
+    <ProjectReference Include="..\..\services\identity\Nexus.Identity.csproj" />
+    <ProjectReference Include="..\..\services\catalog\Nexus.Catalog.csproj" />
+    <ProjectReference Include="..\..\services\inventory\Nexus.Inventory.csproj" />
+    <ProjectReference Include="..\..\services\orders\Nexus.Orders.csproj" />
+    <ProjectReference Include="..\..\services\payments\Nexus.Payments.csproj" />
+    <ProjectReference Include="..\..\services\ai-assistant\Nexus.Assistant.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+</Project>

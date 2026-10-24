@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Alpine Trail Running Shoes">
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="hsl(215,70%,89%)"/><stop offset="1" stop-color="hsl(245,65%,76%)"/></linearGradient></defs>
+<rect width="800" height="800" fill="url(#g)"/><circle cx="656.0" cy="160.0" r="144.0" fill="hsl(215,60%,70%)" opacity=".35"/>
+<g transform="translate(160.0,80.0) scale(4.00)" fill="none" stroke="hsl(215,55%,28%)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 90 48 36l20 30 14-18 24 42z"/><circle cx="86" cy="30" r="8"/></g>
+<text x="400.0" y="624.0" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="42" font-weight="700" fill="hsl(215,55%,28%)">Alpine Trail Running Shoes</text>
+<text x="400.0" y="688.0" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="29" fill="hsl(215,55%,28%)" opacity=".75">Alpine · Detail view</text>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Home &amp; Kitchen">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(12,70%,92%)"/><stop offset="1" stop-color="hsl(42,65%,80%)"/></linearGradient></defs>
+<rect width="600" height="400" fill="url(#g)"/>
+<g transform="translate(120.0,40.0) scale(3.00)" fill="none" stroke="hsl(12,55%,28%)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M26 54h68v34a14 14 0 0 1-14 14H40a14 14 0 0 1-14-14z"/><path d="M94 62h10a8 8 0 0 1 0 22H94"/><path d="M44 40c0-8 8-8 8-16M64 40c0-8 8-8 8-16"/></g>
+<text x="300.0" y="312.0" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="31" font-weight="700" fill="hsl(12,55%,28%)">Home &amp; Kitchen</text>
+<text x="300.0" y="344.0" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="22" fill="hsl(12,55%,28%)" opacity=".75">Shop the collection</text>
+</svg>
