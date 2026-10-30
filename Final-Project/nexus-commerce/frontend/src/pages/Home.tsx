@@ -33,7 +33,14 @@ export default function Home() {
   return (
     <>
       <section className="relative overflow-hidden bg-brand-900 text-white">
-        <img src="/images/hero.svg" alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover opacity-60" />
+        
+<img
+  src="/images/hero-products.png"
+  alt=""
+  aria-hidden="true"
+  className="pointer-events-none absolute right-0 top-1/2 hidden h-auto w-[48%] max-h-[90%] -translate-y-1/2 object-contain object-right md:block"
+/>
+
         <div className="container-page relative py-16 sm:py-24">
           <div className="max-w-2xl animate-fadeIn">
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">{t('home.hero.title')}</h1>
