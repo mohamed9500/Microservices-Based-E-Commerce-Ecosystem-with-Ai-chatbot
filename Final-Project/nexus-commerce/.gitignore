@@ -1,0 +1,18 @@
+# .NET
+bin/
+obj/
+*.user
+.vs/
+TestResults/
+# Node
+node_modules/
+dist/
+coverage/
+# Secrets & env
+.env
+.env.*
+!.env.example
+appsettings.Local.json
+# Misc
+*.log
+.DS_Store

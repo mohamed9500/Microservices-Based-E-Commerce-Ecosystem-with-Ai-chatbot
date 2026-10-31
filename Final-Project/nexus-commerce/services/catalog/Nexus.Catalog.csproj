@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="..\..\building-blocks\Nexus.BuildingBlocks.csproj" />
+    <ProjectReference Include="..\..\contracts\Nexus.Contracts.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Data\seed-products.json" />
+    <EmbeddedResource Include="Data\seed-products.json" LogicalName="seed-products.json" />
+  </ItemGroup>
+</Project>

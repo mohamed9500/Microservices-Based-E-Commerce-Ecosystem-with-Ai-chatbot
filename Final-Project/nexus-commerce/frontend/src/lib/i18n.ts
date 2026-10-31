@@ -1,0 +1,88 @@
+import { useUi } from '../store/ui';
+
+export type Lang = 'en' | 'ar';
+
+const en = {
+  'nav.home': 'Home', 'nav.shop': 'Shop', 'nav.wishlist': 'Wishlist', 'nav.cart': 'Cart', 'nav.orders': 'My orders',
+  'nav.profile': 'Profile', 'nav.login': 'Sign in', 'nav.register': 'Create account', 'nav.logout': 'Sign out', 'nav.admin': 'Admin',
+  'nav.search': 'Search products', 'nav.menu': 'Menu', 'lang.switch': 'العربية',
+  'home.hero.title': 'Everything you need, thoughtfully curated.',
+  'home.hero.sub': 'Premium electronics, home and lifestyle products with fast checkout and an AI shopping assistant that finds the right fit.',
+  'home.hero.cta': 'Shop now', 'home.hero.ask': 'Ask the assistant',
+  'home.featured': 'Featured products', 'home.collections': 'Shop by collection', 'home.viewAll': 'View all',
+  'shop.title': 'Shop', 'shop.search': 'Search', 'shop.category': 'Category', 'shop.allCategories': 'All categories',
+  'shop.price': 'Price range', 'shop.min': 'Min', 'shop.max': 'Max', 'shop.sort': 'Sort by', 'shop.clear': 'Clear filters',
+  'shop.sort.featured': 'Featured', 'shop.sort.price_asc': 'Price: low to high', 'shop.sort.price_desc': 'Price: high to low',
+  'shop.sort.newest': 'Newest', 'shop.sort.name': 'Name', 'shop.results': 'products found', 'shop.empty': 'No products match your filters.',
+  'product.add': 'Add to cart', 'product.outOfStock': 'Out of stock', 'product.inStock': 'In stock', 'product.lowStock': 'Low stock',
+  'product.unknownStock': 'Availability unknown', 'product.specs': 'Specifications', 'product.reviews': 'Customer reviews',
+  'product.noReviews': 'No reviews yet.', 'product.writeReview': 'Write a review', 'product.sku': 'SKU', 'product.wishlistAdd': 'Save to wishlist',
+  'product.wishlistRemove': 'Remove from wishlist', 'product.quantity': 'Quantity',
+  'cart.title': 'Shopping cart', 'cart.empty': 'Your cart is empty.', 'cart.subtotal': 'Subtotal', 'cart.checkout': 'Proceed to checkout',
+  'cart.remove': 'Remove', 'cart.loginRequired': 'Please sign in to add items to your cart.', 'cart.continue': 'Continue shopping',
+  'checkout.title': 'Checkout', 'checkout.shipping': 'Shipping address', 'checkout.payment': 'Payment (development mock)',
+  'checkout.mockNotice': 'This store runs a MOCK payment provider. No card details are collected and no money is charged.',
+  'checkout.mockSuccess': 'Simulate successful payment', 'checkout.mockDecline': 'Simulate declined payment', 'checkout.place': 'Place order',
+  'checkout.shippingFee': 'Shipping', 'checkout.total': 'Total', 'checkout.free': 'Free',
+  'field.fullName': 'Full name', 'field.address': 'Address', 'field.city': 'City', 'field.postal': 'Postal code', 'field.country': 'Country',
+  'field.phone': 'Phone', 'field.email': 'Email', 'field.password': 'Password',
+  'orders.title': 'My orders', 'orders.empty': 'You have not placed any orders yet.', 'orders.cancel': 'Cancel order',
+  'auth.loginTitle': 'Sign in to your account', 'auth.registerTitle': 'Create your account',
+  'auth.noAccount': "Don't have an account?", 'auth.haveAccount': 'Already have an account?',
+  'profile.title': 'My profile', 'profile.save': 'Save changes', 'profile.saved': 'Profile updated.',
+  'wishlist.title': 'Wishlist', 'wishlist.empty': 'Your wishlist is empty.',
+  'common.loading': 'Loading...', 'common.retry': 'Try again', 'common.error': 'Something went wrong.', 'common.page': 'Page', 'common.prev': 'Previous', 'common.next': 'Next',
+  'chat.title': 'Shopping assistant', 'chat.placeholder': 'Ask about products, budgets, comparisons...', 'chat.send': 'Send', 'chat.open': 'Open shopping assistant',
+  'chat.close': 'Close assistant', 'chat.fallback': 'Basic assistant - no AI model configured', 'chat.llm': 'AI model', 'chat.welcome': 'Hi! Tell me what you are looking for and your budget, or ask me to compare products.',
+  'chat.thinking': 'Thinking...', 'chat.new': 'New chat',
+  'footer.tagline': 'A demonstration e-commerce platform. Payments are simulated.',
+} as const;
+
+export type TKey = keyof typeof en;
+
+const ar: Record<TKey, string> = {
+  'nav.home': 'الرئيسية', 'nav.shop': 'المتجر', 'nav.wishlist': 'المفضلة', 'nav.cart': 'السلة', 'nav.orders': 'طلباتي',
+  'nav.profile': 'حسابي', 'nav.login': 'تسجيل الدخول', 'nav.register': 'إنشاء حساب', 'nav.logout': 'تسجيل الخروج', 'nav.admin': 'الإدارة',
+  'nav.search': 'ابحث عن المنتجات', 'nav.menu': 'القائمة', 'lang.switch': 'English',
+  'home.hero.title': 'كل ما تحتاجه، مختار بعناية.',
+  'home.hero.sub': 'إلكترونيات ومنتجات منزلية وأسلوب حياة بجودة عالية، مع دفع سريع ومساعد تسوق ذكي يساعدك في الاختيار.',
+  'home.hero.cta': 'تسوّق الآن', 'home.hero.ask': 'اسأل المساعد',
+  'home.featured': 'منتجات مميزة', 'home.collections': 'تسوّق حسب المجموعة', 'home.viewAll': 'عرض الكل',
+  'shop.title': 'المتجر', 'shop.search': 'بحث', 'shop.category': 'الفئة', 'shop.allCategories': 'كل الفئات',
+  'shop.price': 'نطاق السعر', 'shop.min': 'الأدنى', 'shop.max': 'الأعلى', 'shop.sort': 'ترتيب حسب', 'shop.clear': 'مسح التصفية',
+  'shop.sort.featured': 'المميزة', 'shop.sort.price_asc': 'السعر: من الأقل', 'shop.sort.price_desc': 'السعر: من الأعلى',
+  'shop.sort.newest': 'الأحدث', 'shop.sort.name': 'الاسم', 'shop.results': 'منتج', 'shop.empty': 'لا توجد منتجات مطابقة.',
+  'product.add': 'أضف إلى السلة', 'product.outOfStock': 'غير متوفر', 'product.inStock': 'متوفر', 'product.lowStock': 'كمية محدودة',
+  'product.unknownStock': 'التوفر غير معروف', 'product.specs': 'المواصفات', 'product.reviews': 'آراء العملاء',
+  'product.noReviews': 'لا توجد مراجعات بعد.', 'product.writeReview': 'اكتب مراجعة', 'product.sku': 'رمز المنتج', 'product.wishlistAdd': 'أضف إلى المفضلة',
+  'product.wishlistRemove': 'إزالة من المفضلة', 'product.quantity': 'الكمية',
+  'cart.title': 'سلة التسوق', 'cart.empty': 'سلتك فارغة.', 'cart.subtotal': 'المجموع الفرعي', 'cart.checkout': 'إتمام الشراء',
+  'cart.remove': 'إزالة', 'cart.loginRequired': 'يرجى تسجيل الدخول لإضافة المنتجات إلى السلة.', 'cart.continue': 'متابعة التسوق',
+  'checkout.title': 'إتمام الشراء', 'checkout.shipping': 'عنوان الشحن', 'checkout.payment': 'الدفع (محاكاة للتطوير)',
+  'checkout.mockNotice': 'يعمل هذا المتجر بمزوّد دفع تجريبي. لا يتم جمع بيانات البطاقة ولا يتم خصم أي مبلغ.',
+  'checkout.mockSuccess': 'محاكاة دفع ناجح', 'checkout.mockDecline': 'محاكاة دفع مرفوض', 'checkout.place': 'تأكيد الطلب',
+  'checkout.shippingFee': 'الشحن', 'checkout.total': 'الإجمالي', 'checkout.free': 'مجاني',
+  'field.fullName': 'الاسم الكامل', 'field.address': 'العنوان', 'field.city': 'المدينة', 'field.postal': 'الرمز البريدي', 'field.country': 'الدولة',
+  'field.phone': 'الهاتف', 'field.email': 'البريد الإلكتروني', 'field.password': 'كلمة المرور',
+  'orders.title': 'طلباتي', 'orders.empty': 'لم تقم بأي طلب بعد.', 'orders.cancel': 'إلغاء الطلب',
+  'auth.loginTitle': 'سجّل الدخول إلى حسابك', 'auth.registerTitle': 'أنشئ حسابك',
+  'auth.noAccount': 'ليس لديك حساب؟', 'auth.haveAccount': 'لديك حساب بالفعل؟',
+  'profile.title': 'حسابي', 'profile.save': 'حفظ التغييرات', 'profile.saved': 'تم تحديث الحساب.',
+  'wishlist.title': 'المفضلة', 'wishlist.empty': 'قائمة المفضلة فارغة.',
+  'common.loading': 'جارٍ التحميل...', 'common.retry': 'حاول مجدداً', 'common.error': 'حدث خطأ ما.', 'common.page': 'صفحة', 'common.prev': 'السابق', 'common.next': 'التالي',
+  'chat.title': 'مساعد التسوق', 'chat.placeholder': 'اسأل عن المنتجات والميزانية والمقارنات...', 'chat.send': 'إرسال', 'chat.open': 'افتح مساعد التسوق',
+  'chat.close': 'أغلق المساعد', 'chat.fallback': 'مساعد أساسي - لم يتم إعداد نموذج ذكاء اصطناعي', 'chat.llm': 'نموذج ذكاء اصطناعي', 'chat.welcome': 'مرحباً! أخبرني بما تبحث عنه وميزانيتك، أو اطلب مني مقارنة المنتجات.',
+  'chat.thinking': 'أفكّر...', 'chat.new': 'محادثة جديدة',
+  'footer.tagline': 'منصة تجارة إلكترونية تجريبية. عمليات الدفع محاكاة.',
+};
+
+export const dictionaries: Record<Lang, Record<TKey, string>> = { en, ar };
+
+export function translate(lang: Lang, key: TKey): string {
+  return dictionaries[lang][key] ?? dictionaries.en[key] ?? key;
+}
+
+export function useT() {
+  const lang = useUi((s) => s.lang);
+  return { t: (key: TKey) => translate(lang, key), lang };
+}

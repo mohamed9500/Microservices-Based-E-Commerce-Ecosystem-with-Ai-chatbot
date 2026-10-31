@@ -1,0 +1,566 @@
+{
+  "categories": [
+    {
+      "n": 1,
+      "slug": "phones-tablets",
+      "name": "Phones & Tablets",
+      "description": "Smartphones, tablets and the accessories that keep them running."
+    },
+    {
+      "n": 2,
+      "slug": "computers",
+      "name": "Computers & Laptops",
+      "description": "Laptops, monitors and peripherals for work and play."
+    },
+    {
+      "n": 3,
+      "slug": "audio",
+      "name": "Audio & Headphones",
+      "description": "Headphones, earbuds and speakers with room-filling sound."
+    },
+    {
+      "n": 4,
+      "slug": "smart-home",
+      "name": "Smart Home",
+      "description": "Connected lighting, climate, security and networking."
+    },
+    {
+      "n": 5,
+      "slug": "fashion",
+      "name": "Fashion & Accessories",
+      "description": "Everyday carry and wardrobe staples built to last."
+    },
+    {
+      "n": 6,
+      "slug": "home-kitchen",
+      "name": "Home & Kitchen",
+      "description": "Appliances and cookware that make home life easier."
+    },
+    {
+      "n": 7,
+      "slug": "sports-outdoors",
+      "name": "Sports & Outdoors",
+      "description": "Gear for running, hiking, yoga and tracking progress."
+    },
+    {
+      "n": 8,
+      "slug": "beauty-care",
+      "name": "Beauty & Personal Care",
+      "description": "Skincare and grooming essentials."
+    }
+  ],
+  "products": [
+    {
+      "n": 1,
+      "sku": "PH-AUR-001",
+      "name": "Aurora X5 Smartphone 128GB",
+      "category": "phones-tablets",
+      "brand": "Aurora",
+      "price": 599.0,
+      "featured": true,
+      "description": "A bright 6.4-inch OLED smartphone with a dual-camera system, all-day battery and fast 5G connectivity.",
+      "specs": {
+        "Storage": "128 GB",
+        "Display": "6.4in OLED 120Hz",
+        "Battery": "4,500 mAh",
+        "Camera": "50 MP + 12 MP"
+      }
+    },
+    {
+      "n": 2,
+      "sku": "PH-AUR-002",
+      "name": "Aurora X5 Pro Smartphone 256GB",
+      "category": "phones-tablets",
+      "brand": "Aurora",
+      "price": 799.0,
+      "featured": false,
+      "description": "The Pro model adds a telephoto lens, 256 GB of storage and a titanium-look frame for demanding users.",
+      "specs": {
+        "Storage": "256 GB",
+        "Display": "6.7in OLED 120Hz",
+        "Battery": "5,000 mAh",
+        "Camera": "50 MP + 48 MP + 12 MP"
+      }
+    },
+    {
+      "n": 3,
+      "sku": "PH-NIM-003",
+      "name": "Nimbus Tab 11 Tablet",
+      "category": "phones-tablets",
+      "brand": "Nimbus",
+      "price": 349.0,
+      "featured": false,
+      "description": "An 11-inch tablet with a sharp 2K display and quad speakers, ideal for reading, streaming and note taking.",
+      "specs": {
+        "Storage": "128 GB",
+        "Display": "11in LCD 2K",
+        "Battery": "8,000 mAh",
+        "Weight": "490 g"
+      }
+    },
+    {
+      "n": 4,
+      "sku": "PH-NIM-004",
+      "name": "Nimbus Fast Charger 65W",
+      "category": "phones-tablets",
+      "brand": "Nimbus",
+      "price": 39.9,
+      "featured": false,
+      "description": "A compact 65 W GaN charger with two USB-C ports that fast-charges phones, tablets and ultrabooks.",
+      "specs": {
+        "Output": "65 W",
+        "Ports": "2x USB-C",
+        "Technology": "GaN",
+        "Cable": "1 m USB-C included"
+      }
+    },
+    {
+      "n": 5,
+      "sku": "CP-VLT-005",
+      "name": "Voltix Air 14 Laptop",
+      "category": "computers",
+      "brand": "Voltix",
+      "price": 899.0,
+      "featured": true,
+      "description": "A light 14-inch laptop with a fast 12-core processor, 16 GB of memory and up to 15 hours of battery life.",
+      "specs": {
+        "Processor": "12-core",
+        "Memory": "16 GB",
+        "Storage": "512 GB SSD",
+        "Weight": "1.3 kg"
+      }
+    },
+    {
+      "n": 6,
+      "sku": "CP-VLT-006",
+      "name": "Voltix Pro 16 Laptop",
+      "category": "computers",
+      "brand": "Voltix",
+      "price": 1499.0,
+      "featured": false,
+      "description": "A 16-inch performance laptop with a dedicated graphics card and a colour-accurate display for creators.",
+      "specs": {
+        "Processor": "14-core",
+        "Memory": "32 GB",
+        "Storage": "1 TB SSD",
+        "Graphics": "Dedicated 8 GB"
+      }
+    },
+    {
+      "n": 7,
+      "sku": "CP-LUM-007",
+      "name": "Lumen 27in 4K Monitor",
+      "category": "computers",
+      "brand": "Lumen",
+      "price": 429.0,
+      "featured": false,
+      "description": "A 27-inch 4K IPS monitor with wide colour coverage, USB-C power delivery and a height-adjustable stand.",
+      "specs": {
+        "Resolution": "3840x2160",
+        "Panel": "IPS",
+        "Refresh": "60 Hz",
+        "Connectivity": "USB-C 65W, HDMI, DP"
+      }
+    },
+    {
+      "n": 8,
+      "sku": "CP-KEY-008",
+      "name": "Keystone Mechanical Keyboard",
+      "category": "computers",
+      "brand": "Keystone",
+      "price": 89.0,
+      "featured": false,
+      "description": "A compact wireless mechanical keyboard with hot-swappable switches and per-key backlighting.",
+      "specs": {
+        "Layout": "75%",
+        "Switches": "Hot-swappable tactile",
+        "Connectivity": "Bluetooth + 2.4 GHz + USB-C",
+        "Battery": "Up to 200 h"
+      }
+    },
+    {
+      "n": 9,
+      "sku": "AU-AUR-009",
+      "name": "Aurora Wireless Headphones",
+      "category": "audio",
+      "brand": "Aurora",
+      "price": 199.0,
+      "featured": true,
+      "description": "Over-ear wireless headphones with adaptive noise cancelling, plush ear cushions and 40 hours of playback.",
+      "specs": {
+        "Type": "Over-ear",
+        "Noise cancelling": "Adaptive ANC",
+        "Battery": "40 h",
+        "Connectivity": "Bluetooth 5.3"
+      }
+    },
+    {
+      "n": 10,
+      "sku": "AU-ECH-010",
+      "name": "Echo Pods True Wireless Earbuds",
+      "category": "audio",
+      "brand": "Echo",
+      "price": 129.0,
+      "featured": false,
+      "description": "Pocketable true wireless earbuds with clear calls, a secure fit for workouts and a wireless charging case.",
+      "specs": {
+        "Type": "In-ear",
+        "Noise cancelling": "Active",
+        "Battery": "8 h + 24 h case",
+        "Water resistance": "IPX4"
+      }
+    },
+    {
+      "n": 11,
+      "sku": "AU-ECH-011",
+      "name": "Echo Studio Bluetooth Speaker",
+      "category": "audio",
+      "brand": "Echo",
+      "price": 149.0,
+      "featured": false,
+      "description": "A rugged portable speaker with 360-degree sound, deep bass and 18 hours of battery life.",
+      "specs": {
+        "Output": "30 W",
+        "Battery": "18 h",
+        "Water resistance": "IP67",
+        "Connectivity": "Bluetooth 5.3"
+      }
+    },
+    {
+      "n": 12,
+      "sku": "AU-SON-012",
+      "name": "Sonara Soundbar 2.1",
+      "category": "audio",
+      "brand": "Sonara",
+      "price": 249.0,
+      "featured": false,
+      "description": "A slim 2.1-channel soundbar with a wireless subwoofer that makes movies and dialogue clearer.",
+      "specs": {
+        "Channels": "2.1",
+        "Output": "220 W",
+        "Inputs": "HDMI eARC, optical, Bluetooth",
+        "Subwoofer": "Wireless"
+      }
+    },
+    {
+      "n": 13,
+      "sku": "SH-LUM-013",
+      "name": "Lumen Smart Bulb 4-Pack",
+      "category": "smart-home",
+      "brand": "Lumen",
+      "price": 34.99,
+      "featured": false,
+      "description": "Wi-Fi colour bulbs you can dim, schedule and control by voice or app, with no hub required.",
+      "specs": {
+        "Pack": "4 bulbs",
+        "Brightness": "800 lumens",
+        "Colours": "16 million",
+        "Connectivity": "Wi-Fi 2.4 GHz"
+      }
+    },
+    {
+      "n": 14,
+      "sku": "SH-HAV-014",
+      "name": "Haven Smart Thermostat",
+      "category": "smart-home",
+      "brand": "Haven",
+      "price": 159.0,
+      "featured": true,
+      "description": "A learning thermostat that builds an energy-saving schedule and can be controlled from anywhere.",
+      "specs": {
+        "Display": "Colour touch",
+        "Compatibility": "Most 24V systems",
+        "Sensors": "Temperature, humidity, motion",
+        "Connectivity": "Wi-Fi"
+      }
+    },
+    {
+      "n": 15,
+      "sku": "SH-HAV-015",
+      "name": "Haven Wi-Fi Security Camera",
+      "category": "smart-home",
+      "brand": "Haven",
+      "price": 79.0,
+      "featured": false,
+      "description": "A 2K indoor/outdoor security camera with colour night vision, two-way audio and motion alerts.",
+      "specs": {
+        "Resolution": "2K",
+        "Night vision": "Colour",
+        "Weather rating": "IP65",
+        "Storage": "Local microSD or cloud"
+      }
+    },
+    {
+      "n": 16,
+      "sku": "SH-NIM-016",
+      "name": "Nimbus Mesh Wi-Fi Router 2-Pack",
+      "category": "smart-home",
+      "brand": "Nimbus",
+      "price": 189.0,
+      "featured": false,
+      "description": "A two-node Wi-Fi 6 mesh system covering up to 4,500 sq ft with simple app-based setup.",
+      "specs": {
+        "Standard": "Wi-Fi 6",
+        "Coverage": "Up to 4,500 sq ft",
+        "Speed": "AX3000",
+        "Ports": "2x Gigabit per node"
+      }
+    },
+    {
+      "n": 17,
+      "sku": "FA-TRA-017",
+      "name": "Trailmark Leather Backpack",
+      "category": "fashion",
+      "brand": "Trailmark",
+      "price": 129.0,
+      "featured": true,
+      "description": "A full-grain leather backpack with a padded 15-inch laptop sleeve and weatherproof lining.",
+      "specs": {
+        "Material": "Full-grain leather",
+        "Capacity": "22 L",
+        "Laptop sleeve": "15in",
+        "Colour": "Tan"
+      }
+    },
+    {
+      "n": 18,
+      "sku": "FA-TRA-018",
+      "name": "Trailmark Classic Sunglasses",
+      "category": "fashion",
+      "brand": "Trailmark",
+      "price": 89.0,
+      "featured": false,
+      "description": "Polarised sunglasses with UV400 lenses and a lightweight acetate frame.",
+      "specs": {
+        "Lenses": "Polarised UV400",
+        "Frame": "Acetate",
+        "Fit": "Medium",
+        "Case": "Hard case included"
+      }
+    },
+    {
+      "n": 19,
+      "sku": "FA-URB-019",
+      "name": "Urbana Merino Wool Sweater",
+      "category": "fashion",
+      "brand": "Urbana",
+      "price": 99.0,
+      "featured": false,
+      "description": "A soft, breathable crew-neck sweater in 100% merino wool that resists odour and keeps its shape.",
+      "specs": {
+        "Material": "100% merino wool",
+        "Fit": "Regular",
+        "Care": "Machine wash cold",
+        "Colour": "Charcoal"
+      }
+    },
+    {
+      "n": 20,
+      "sku": "FA-URB-020",
+      "name": "Urbana Minimalist Watch",
+      "category": "fashion",
+      "brand": "Urbana",
+      "price": 179.0,
+      "featured": false,
+      "description": "A slim 40 mm stainless steel watch with a sapphire-coated glass and a genuine leather strap.",
+      "specs": {
+        "Case": "40 mm steel",
+        "Glass": "Sapphire coated",
+        "Water resistance": "5 ATM",
+        "Movement": "Quartz"
+      }
+    },
+    {
+      "n": 21,
+      "sku": "HK-CAS-021",
+      "name": "Casa Espresso Machine",
+      "category": "home-kitchen",
+      "brand": "Casa",
+      "price": 329.0,
+      "featured": true,
+      "description": "A 15-bar espresso machine with a built-in grinder and steam wand for cafe-quality drinks at home.",
+      "specs": {
+        "Pressure": "15 bar",
+        "Grinder": "Built-in conical burr",
+        "Tank": "1.8 L",
+        "Milk": "Manual steam wand"
+      }
+    },
+    {
+      "n": 22,
+      "sku": "HK-CAS-022",
+      "name": "Casa Air Fryer 5L",
+      "category": "home-kitchen",
+      "brand": "Casa",
+      "price": 119.0,
+      "featured": false,
+      "description": "A 5-litre air fryer with eight presets that cooks crisp meals with little or no oil.",
+      "specs": {
+        "Capacity": "5 L",
+        "Power": "1700 W",
+        "Presets": "8",
+        "Basket": "Dishwasher safe"
+      }
+    },
+    {
+      "n": 23,
+      "sku": "HK-PUR-023",
+      "name": "Purely Robot Vacuum",
+      "category": "home-kitchen",
+      "brand": "Purely",
+      "price": 279.0,
+      "featured": false,
+      "description": "A mapping robot vacuum with strong suction, a mopping pad and scheduling from your phone.",
+      "specs": {
+        "Suction": "4000 Pa",
+        "Runtime": "150 min",
+        "Navigation": "Lidar mapping",
+        "Mopping": "Yes"
+      }
+    },
+    {
+      "n": 24,
+      "sku": "HK-CAS-024",
+      "name": "Casa Ceramic Cookware Set 10-Piece",
+      "category": "home-kitchen",
+      "brand": "Casa",
+      "price": 189.0,
+      "featured": false,
+      "description": "A ten-piece non-stick ceramic cookware set that is oven safe and works on every hob type.",
+      "specs": {
+        "Pieces": "10",
+        "Coating": "Ceramic non-stick",
+        "Oven safe": "Up to 260 C",
+        "Hob": "Induction compatible"
+      }
+    },
+    {
+      "n": 25,
+      "sku": "SP-ALP-025",
+      "name": "Alpine Trail Running Shoes",
+      "category": "sports-outdoors",
+      "brand": "Alpine",
+      "price": 119.0,
+      "featured": true,
+      "description": "Cushioned trail running shoes with a grippy outsole, rock plate and breathable mesh upper.",
+      "specs": {
+        "Drop": "6 mm",
+        "Weight": "280 g",
+        "Outsole": "Multi-directional lugs",
+        "Use": "Trail"
+      }
+    },
+    {
+      "n": 26,
+      "sku": "SP-ALP-026",
+      "name": "Alpine 40L Hiking Backpack",
+      "category": "sports-outdoors",
+      "brand": "Alpine",
+      "price": 109.0,
+      "featured": false,
+      "description": "A ventilated 40-litre hiking pack with a rain cover, hydration sleeve and adjustable harness.",
+      "specs": {
+        "Capacity": "40 L",
+        "Weight": "1.4 kg",
+        "Rain cover": "Included",
+        "Hydration": "Compatible"
+      }
+    },
+    {
+      "n": 27,
+      "sku": "SP-PUL-027",
+      "name": "Pulse Fitness Tracker",
+      "category": "sports-outdoors",
+      "brand": "Pulse",
+      "price": 59.0,
+      "featured": false,
+      "description": "A slim fitness tracker with heart-rate and sleep tracking, GPS connect and a 10-day battery.",
+      "specs": {
+        "Battery": "10 days",
+        "Sensors": "Heart rate, SpO2",
+        "Water resistance": "5 ATM",
+        "Display": "AMOLED"
+      }
+    },
+    {
+      "n": 28,
+      "sku": "SP-PUL-028",
+      "name": "Pulse Yoga Mat Premium",
+      "category": "sports-outdoors",
+      "brand": "Pulse",
+      "price": 39.0,
+      "featured": false,
+      "description": "A 6 mm non-slip yoga mat made from natural rubber with alignment markings and a carry strap.",
+      "specs": {
+        "Thickness": "6 mm",
+        "Material": "Natural rubber",
+        "Size": "183 x 61 cm",
+        "Grip": "Non-slip"
+      }
+    },
+    {
+      "n": 29,
+      "sku": "BE-GLO-029",
+      "name": "Glow Vitamin C Serum 30ml",
+      "category": "beauty-care",
+      "brand": "Glow",
+      "price": 24.0,
+      "featured": false,
+      "description": "A lightweight brightening serum with 15% vitamin C and hyaluronic acid for daily use.",
+      "specs": {
+        "Volume": "30 ml",
+        "Key ingredient": "15% vitamin C",
+        "Skin type": "All",
+        "Fragrance": "Fragrance-free"
+      }
+    },
+    {
+      "n": 30,
+      "sku": "BE-GLO-030",
+      "name": "Glow Electric Toothbrush",
+      "category": "beauty-care",
+      "brand": "Glow",
+      "price": 69.0,
+      "featured": false,
+      "description": "A sonic electric toothbrush with five modes, a two-minute timer and a three-week battery.",
+      "specs": {
+        "Modes": "5",
+        "Battery": "21 days",
+        "Heads": "2 included",
+        "Charging": "USB-C"
+      }
+    },
+    {
+      "n": 31,
+      "sku": "BE-PUR-031",
+      "name": "Purely Hair Dryer Ionic",
+      "category": "beauty-care",
+      "brand": "Purely",
+      "price": 89.0,
+      "featured": false,
+      "description": "A fast-drying ionic hair dryer with three heat settings, a cool shot and a diffuser attachment.",
+      "specs": {
+        "Power": "1800 W",
+        "Technology": "Ionic",
+        "Settings": "3 heat, 2 speed",
+        "Attachments": "Concentrator, diffuser"
+      }
+    },
+    {
+      "n": 32,
+      "sku": "BE-PUR-032",
+      "name": "Purely Hydrating Face Cream",
+      "category": "beauty-care",
+      "brand": "Purely",
+      "price": 32.0,
+      "featured": true,
+      "description": "A rich daily moisturiser with ceramides and niacinamide that hydrates for 24 hours.",
+      "specs": {
+        "Volume": "50 ml",
+        "Key ingredients": "Ceramides, niacinamide",
+        "Skin type": "Dry to normal",
+        "Fragrance": "Fragrance-free"
+      }
+    }
+  ]
+}

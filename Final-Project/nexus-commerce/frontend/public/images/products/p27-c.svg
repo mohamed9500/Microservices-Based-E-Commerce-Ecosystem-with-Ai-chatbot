@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Pulse Fitness Tracker">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(221,70%,86%)"/><stop offset="1" stop-color="hsl(251,65%,72%)"/></linearGradient></defs>
+<rect width="800" height="800" fill="url(#g)"/><rect x="40.0" y="560.0" width="720.0" height="160.0" rx="40.0" fill="hsl(221,60%,70%)" opacity=".25"/>
+<g transform="translate(160.0,80.0) scale(4.00)" fill="none" stroke="hsl(221,55%,28%)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 90 48 36l20 30 14-18 24 42z"/><circle cx="86" cy="30" r="8"/></g>
+<text x="400.0" y="624.0" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="42" font-weight="700" fill="hsl(221,55%,28%)">Pulse Fitness Tracker</text>
+<text x="400.0" y="688.0" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="29" fill="hsl(221,55%,28%)" opacity=".75">Pulse · In context</text>
+</svg>

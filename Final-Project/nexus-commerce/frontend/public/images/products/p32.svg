@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Purely Hydrating Face Cream">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(66,70%,92%)"/><stop offset="1" stop-color="hsl(96,65%,80%)"/></linearGradient></defs>
+<rect width="800" height="800" fill="url(#g)"/>
+<g transform="translate(160.0,80.0) scale(4.00)" fill="none" stroke="hsl(66,55%,28%)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="44" y="40" width="32" height="58" rx="7"/><rect x="50" y="22" width="20" height="18" rx="4"/></g>
+<text x="400.0" y="624.0" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="42" font-weight="700" fill="hsl(66,55%,28%)">Purely Hydrating Face Cream</text>
+<text x="400.0" y="688.0" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="29" fill="hsl(66,55%,28%)" opacity=".75">Purely · Front view</text>
+</svg>
